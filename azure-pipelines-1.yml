@@ -1,0 +1,47 @@
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '9e61d85f-6e13-4292-b6f9-2cd215466768'
+  imageRepository: 'devopsfun'
+  containerRegistry: 'ado22.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-18.04'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+stages:
+- stage: Deploy to Test
+  displayName: Deploy to test enviroment
+  jobs:
+  - job : deploy
+    displayName: Deploy to test enviroment
+    pool: $(vmImageName)
+    steps:
+      - task: AzureWebAppContainer@1
+        displayName: deploy to test Env
+        inputs:
+          azureSubscription: 'Test RG'
+          appName: 'web-app-test001'
+          containers: 'ado22.azurecr.io/devopsfun:latest'
