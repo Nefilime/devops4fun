@@ -31,7 +31,6 @@ stages:
         tags: |
           $(tag)
 
-stages:
 - stage: Deploy to Test
   displayName: Deploy to test enviroment
   jobs:
