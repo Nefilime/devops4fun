@@ -36,7 +36,8 @@ stages:
   jobs:
   - job : deploy
     displayName: Deploy to test enviroment
-    pool: $(vmImageName)
+    pool:
+      vmImage: $(vmImageName)
     steps:
       - task: AzureWebAppContainer@1
         displayName: deploy to test Env
