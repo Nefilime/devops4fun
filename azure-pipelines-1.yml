@@ -44,4 +44,4 @@ stages:
         inputs:
           azureSubscription: 'Test RG'
           appName: 'web-app-test001'
-          containers: 'ado22.azurecr.io/devopsfun:latest'
+          containers: 'ado22.azurecr.io/devopsfun:$(tag)'
