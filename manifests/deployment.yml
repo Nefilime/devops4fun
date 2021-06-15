@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: nefilimedevopsfun 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nefilimedevopsfun
+  template:
+    metadata:
+      labels:
+        app: nefilimedevopsfun 
+    spec:
+      containers:
+        - name: nefilimedevopsfun 
+          image: ado22.azurecr.io/nefilimedevopsfun
+          ports:
+          - containerPort: 80
