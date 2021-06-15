@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-devopsfun
+  namespace: {{ .Release.Name }}-devopsfun
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-devopsfun
+  replicas: {{ .Values.replicaCount}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-devopsfun
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-devopsfun
+        image: {{ .Values.container.image }}
+        ports:
+        - containerPort: 80
