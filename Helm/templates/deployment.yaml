@@ -20,4 +20,4 @@ spec:
         - containerPort: 80
         env:
         - name: SOMEPASS
-          value: $(somepass)
+          value: {{ .Values.secret }}

@@ -2,3 +2,5 @@ replicaCount : 2
 
 container:
   image: ado22.azurecr.io/devops4fun
+
+secret: 
