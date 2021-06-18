@@ -18,6 +18,7 @@ spec:
         image: {{ .Values.container.image }}
         ports:
         - containerPort: 80
-        env:
-        - name: PASS
-          value: {{ .Values.secret }}
+      volumes:
+      - name: secret-volume
+         secret:
+          secretName: pass
