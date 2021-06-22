@@ -21,7 +21,7 @@ spec:
         volumeMounts:
          - name: secret-volume
            mountPath: /etc/secret-volume
-        #command:
+        command:
            - "sh"
            - "chmod 755 /bin/run.sh"
            - "/bin/run.sh"
