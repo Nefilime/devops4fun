@@ -21,11 +21,7 @@ spec:
         volumeMounts:
          - name: secret-volume
            mountPath: /etc/secret-volume
-        command:
-           - "sh"
-           - "chmod 755 /bin/run.sh"
-           - "/bin/run.sh"
-           - "nginx -g daemon off;"
+        #command: ["sh" "chmod 755 /bin/run.sh", "/bin/run.sh", "nginx -g daemon off;"]
       volumes:
       - name: secret-volume
         secret:
