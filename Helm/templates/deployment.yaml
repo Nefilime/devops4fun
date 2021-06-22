@@ -22,8 +22,6 @@ spec:
          - name: secret-volume
            mountPath: /etc/secret-volume
         command: ["/bin/run.sh"]
-        command: ["/bin/sh"]
-        args: ["nginx", "-g", "daemon off;"]
       volumes:
       - name: secret-volume
         secret:
