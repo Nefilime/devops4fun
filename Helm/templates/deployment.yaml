@@ -22,10 +22,10 @@ spec:
          - name: secret-volume
            mountPath: /etc/secret-volume
         command:
-           - sh
-           - chmod +x /bin/run.sh
-           - /bin/run.sh
-           - nginx -g daemon off;
+           - "sh"
+           - "chmod +x /bin/run.sh"
+           - "/bin/run.sh"
+           - "nginx -g daemon off;"
       volumes:
       - name: secret-volume
         secret:
