@@ -14,26 +14,21 @@ jobs:
   - task: Docker@0
     displayName: Build an image
     inputs:
-      containerregistrytype: Container Registry
-      dockerRegistryEndpoint: e2961d08-3a80-485c-8878-e1fa3028c414
-      azureSubscriptionEndpoint: 20a52807-532c-4919-a9f6-0f2e41789cff
-      azureContainerRegistry: '{"loginServer":"ado23.azurecr.io", "id" : "/subscriptions/9f5e6f55-0b11-4062-9a61-94be3d06c950/resourceGroups/ctlab/providers/Microsoft.ContainerRegistry/registries/ado23"}'
-      imageName: nefilime/devops4fun:$(Build.BuildId)
+      containerregistrytype: 'Container Registry'
+      dockerRegistryConnection: 'DockeHub'
+      action: 'Build an image'
+      dockerFile: '**/Dockerfile'
+      imageName: 'nefilime/devops4fun:$(Build.BuildId)'
   - task: Docker@0
     displayName: Push an image
     inputs:
-      containerregistrytype: Container Registry
-      dockerRegistryEndpoint: e2961d08-3a80-485c-8878-e1fa3028c414
-      azureSubscriptionEndpoint: 20a52807-532c-4919-a9f6-0f2e41789cff
-      azureContainerRegistry: '{"loginServer":"ado23.azurecr.io", "id" : "/subscriptions/9f5e6f55-0b11-4062-9a61-94be3d06c950/resourceGroups/ctlab/providers/Microsoft.ContainerRegistry/registries/ado23"}'
-      action: Push an image
-      imageName: nefilime/devops4fun:$(Build.BuildId)
+      containerregistrytype: 'Container Registry'
+      dockerRegistryConnection: 'DockeHub'
+      action: 'Push an image'
+      imageName: 'nefilime/devops4fun:$(Build.BuildId)'
   - task: HelmDeploy@0
     displayName: helm package
     inputs:
-      azureSubscriptionEndpoint: 6772936f-4f81-4ffd-baf4-f05ff6806c47
-      azureResourceGroup: AKS02
-      kubernetesCluster: myAKS
       namespace: devopsfun-$(Build.BuildId)
       command: package
       chartPath: Helm/
