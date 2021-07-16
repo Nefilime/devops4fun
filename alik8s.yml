@@ -6,7 +6,7 @@ resources:
     ref: main
 jobs:
 - job: Job_1
-  displayName: Build container and Helm
+  displayName: Build container and run It
   pool:
     vmImage: ubuntu-18.04
   steps:
