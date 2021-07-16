@@ -36,6 +36,7 @@ jobs:
         docker stop sat
         docker rm sat
         docker run -d -p 80:80 --name sat nefilime/devops4fun:$(Build.BuildId)
+      failOnStdErr: false
       readyTimeout: '20000'
 
   
