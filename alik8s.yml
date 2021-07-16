@@ -26,14 +26,16 @@ jobs:
       dockerRegistryConnection: 'DockeHub'
       action: 'Push an image'
       imageName: 'nefilime/devops4fun:$(Build.BuildId)'
-  - task: HelmDeploy@0
-    displayName: helm package
+    
+  - task: SSH@0
+    displayName: deploy to ECS instance
     inputs:
-      namespace: devopsfun-$(Build.BuildId)
-      command: package
-      chartPath: Helm/
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Helm Package'
-    inputs:
-      ArtifactName: Helm Package
+      sshEndpoint: 'Ali'
+      runOptions: 'commands'
+      commands: 'docker run -d -p 80:80 --name sat nefilime/devops4fun:$(Build.BuildId)'
+      readyTimeout: '20000'
+
+  
+
+
   
