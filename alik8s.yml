@@ -32,7 +32,10 @@ jobs:
     inputs:
       sshEndpoint: 'Ali'
       runOptions: 'commands'
-      commands: 'docker run -d -p 80:80 --name sat nefilime/devops4fun:$(Build.BuildId)'
+      commands: |
+        docker stop sat
+        docker rm sat
+        docker run -d -p 80:80 --name sat nefilime/devops4fun:$(Build.BuildId)
       readyTimeout: '20000'
 
   
